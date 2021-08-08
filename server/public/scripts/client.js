@@ -1,6 +1,7 @@
 $(document).ready(function(){
   console.log('jQuery sourced.');
   $('#submitBttn').on('click', submitTask);
+  refreshTasks();
 });
 
 function addClickHandlers() {
@@ -16,4 +17,17 @@ function submitTask(){
     console.log('submit button clicked.');
     let task = {};
     $('#toDoInput').val();
+}
+
+//render books to the page
+function refreshTasks() {
+  $.ajax({
+    type: 'GET',
+    url: '/tasks'
+  }).then(function(response) {
+    console.log(response);
+    renderBooks(response);
+  }).catch(function(error){
+    console.log('error in GET', error);
+  });
 }
