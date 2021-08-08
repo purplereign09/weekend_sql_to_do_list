@@ -5,11 +5,15 @@ $(document).ready(function(){
 
 function addClickHandlers() {
   
-//   $('#bookShelf').on('click', '.deleteBttn', deleteRow); 
-//   $('#markAsRead').on('click', updateBooks);
-  // TODO - Add code for edit & delete buttons
+
 };
 
+//Submit your task and add input values to your form
+//empty placeholders once data is collected
+//append data to the DOM and store in the table through
+// as POST 
 function submitTask(){
     console.log('submit button clicked.');
+    let task = {};
+    $('#toDoInput').val();
 }

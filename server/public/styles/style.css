@@ -1,0 +1,64 @@
+* {
+  margin: auto 0;
+}
+
+h1 {
+  margin-top: 60px;
+  margin-left: 40px;
+}
+
+.taskUserForm {
+  display: flex;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+#taskName {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#taskDescription {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#taskCompleted {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#taskCompleted.swith {
+  margin-right: 20px;
+}
+
+#taskDueDate {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#submitTask {
+  margin-left: 20px;
+}
+
+.tableHeading {
+  margin-left: 40px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+#tableBox,
+tbody,
+thead {
+  width: 900px;
+  viewport-fit: 75%;
+  margin: auto 0;
+  padding: 40px;
+  margin-left: 160px;
+  border: solid rgba(184, 3, 184, 0.788);
+}
+
+table#tableBody {
+  padding: 40px;
+}

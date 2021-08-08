@@ -13,15 +13,41 @@
     <header>
         <h1>To Do List</h1>
     </header>
+    <form class="taskUserForm">
+        <label for="taskName">Enter Your Task:</label><br>
+        <input 
+            type="text" 
+            id="taskName" 
+            name="taskName" 
+            placeholder="What is your task?"><br>
+        <label for="taskDescription">Task Description:</label><br><br>
+        <input 
+            type="text" 
+            id="taskDescription" 
+            name="taskDescription" 
+            placeholder="Description"><br>
+        <label for="taskCompldeted">Has it been completed?</label><br>
+        <input 
+            type="checkbox" 
+            class="switch" 
+            id="taskCompleted" 
+            name="taskCompldeted" 
+            placeholder="Task Complete?"><br>
+        <label for="taskDueDate">Task Due Date:</label><br><br>
+        <input 
+            type="taskDueDate" 
+            id="taskDueDate" 
+            name="taskDueDate" 
+            placeholder="Enter the due date"><br>
+        <input id="submitTask" type="submit" value="Submit">
+    </form>
 
+    <h2 class="tableHeading">What Are Your Weekend To DOs?</h2>
     <table id="tableBox">
         <tbody id="tableBody">
-        <thead>What Are Your Weekend To DOs?</thead><br>
-        <input type="text" id="toDoInput" placeholder="type your task" value="To Do"><br>
-        <input id="submitBttn" type="submit" value="Submit">
             <tr>
                 <th id="weedkend_task">Task</th>
-                <th id="weedend_to_do">To Do</th>
+                <th id="weedend_description">Description</th>
                 <th id="weekend_completed">Completed</th>
                 <th id="weekend_dueDate">Due</th>
             </tr>
