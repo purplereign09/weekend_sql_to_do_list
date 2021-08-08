@@ -20,11 +20,10 @@ router.get('/', (req, res) => {
 //Create a new task and insert into table
 router.post('/',  (req, res) => {
   let newTask = req.body;
-  console.log(`Adding book`, newTask);
-
+  console.log(`Adding task`, newTask);
   let queryText = `INSERT INTO "tasks" ("task", "description", "completed", "due")
-                   VALUES ($1, $2);`;
-  pool.query(queryText, [newBook.author, newBook.title])
+                   VALUES ($1, $2  $3  $4);`;
+  pool.query(queryText, [newTask.taskName, newTask.taskDescription, newTask.taskCompleted, newTask.taskDueDate])
     .then(result => {
       res.sendStatus(201);
     })
@@ -35,11 +34,12 @@ router.post('/',  (req, res) => {
 });
 
 //Update task list
+//UPDATE myTable SET "myFieldInTable" = NOT "myFieldInTable" WHERE "id" = $1
 router.put('/',  (req, res) => {
   // let updatedBook = req.params.id;
   console.log(`Adding task`, XX);
   //adding parameterized query text to protect from anon
-  let queryText = `UPDATE "tasks" ("task", "description", "completed", "due")
+  let queryText = `UPDATE tableBody SET "tasks" = NOT "tasks" WHERE "id" = $1 ("task", "description", "completed", "due")
                    VALUES ($1, $2, $3  $4);`;
   pool.query(queryText, [newBook.author, newBook.title, newBook.isRead])
     .then((dbRes) => {
@@ -53,19 +53,19 @@ router.put('/',  (req, res) => {
 
 //Delete task from list
 router.delete('/:id',  (req, res) => {
-  let XX = req.params.id;
-  console.log(`Deleted task`, XX);
+  let taskToDelete = req.params.id;
+  console.log(`Deleted task`, taskToDelete);
 //adding parameterized query text to protect from hackers
   let queryText = `DELETE FROM "tasks" WHERE "id" = $1;
             `;
   //adding real query text to tell db what to do
-  const sqlParams = [XX];
+  const sqlParams = [taskToDelete];
   pool.query(queryText, sqlParams)
     .then((dbRes) => {
       res.sendStatus(200);
     })
     .catch(error => {
-      console.log(`Error adding new book`, error);
+      console.log(`Error adding new new task`, error);
       res.sendStatus(500);
     });
 });
