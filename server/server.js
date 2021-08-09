@@ -5,7 +5,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const tasksRouter = require('./routes/tasks_router'); 
 
 //routes change
-// app.use('/books', booksRouter);
+app.use('/tasks', tasksRouter);
 
 // Serve back static files by default
 app.use(express.static('server/public'))

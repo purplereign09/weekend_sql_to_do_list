@@ -1,5 +1,8 @@
 * {
   margin: auto 0;
+
+body {
+    background-color: #f7fff7;
 }
 
 h1 {
@@ -51,7 +54,7 @@ h1 {
 #tableBox,
 tbody,
 thead {
-  width: 900px;
+  width: 1200px;
   viewport-fit: 75%;
   margin: auto 0;
   padding: 40px;
