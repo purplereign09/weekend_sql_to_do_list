@@ -28,3 +28,7 @@ ID: Serial      Task: "String"       Complete:  True       Due: date
 
                                      Delete:    False      Overdue: T/F
 
+
+Completed BOOLEAN DEFAULT FALSE
+add a user input>
+if true, set css to green

@@ -85,6 +85,12 @@ for(let i = 0; i < tasks.length; i += 1) {
   }
 };
 
+
+//I want to insert a box --but not a checkbox
+
+// Completed BOOLEAN DEFAULT FALSE
+// add a user input>
+// if true, set css to green ***FINISHED RIGHT HERE ...
 function checkOffTask(){
     for(let i = 0; i < tasks.length; i += 1) {
     // For each task, append a new row to our table
@@ -93,12 +99,10 @@ function checkOffTask(){
         <td>${tasks[i].task}</td>
         <td>${tasks[i].description}</td>
         <td>${tasks[i].completed}</td>
-        <td colspan=3>
-        <div id="my_box">
-        </div>
     </tr>
     `);
   }
+  
 $.ajax({
     method: 'PUT',
     url: `/tasks/${task.id}`,
