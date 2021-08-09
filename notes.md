@@ -32,3 +32,30 @@ ID: Serial      Task: "String"       Complete:  True       Due: date
 Completed BOOLEAN DEFAULT FALSE
 add a user input>
 if true, set css to green
+
+salary-calculator-server/
+├── server/
+│   ├── public/
+│   │   ├── scripts/
+│   │   │   └── client.js
+│   │   ├── vendors/
+│   │   │   └── jquery.js
+│   │   ├── styles/
+│   │   │   └── style.css
+│   │   └── index.html
+│   └── server.js
+├── node_modules/
+│   ├── express/
+│   └── ...
+└── .gitignore
+
+//Server >
+//Add routes > router
+//Add Modules > pool.js
+
+npm init--yes
+npm install express
+npm install body-parser
+npm install pg
+node server/server.js
+c
