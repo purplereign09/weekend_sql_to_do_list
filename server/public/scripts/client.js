@@ -12,16 +12,13 @@ $(document).ready(function(){
 
 
 //PUT method where the row changes color on the 'check off' of a task.
-$('.completedBttn').on('click', checkOffTask);
+$('#tableBox').on('click', '.completeInput', checkOffTask);
 
 //DELETE metod where the table row is deleted and the information is deleted from the db
 $('#tableBox').on('click', '.deleteBttn', deleteTaskRow);
 });
 
-// function addClickHandlers() {
-  
 
-// };
 
 //GET
 //Getting all tasks from the DB and rendering on DOM
@@ -36,7 +33,7 @@ $.ajax({
   }).catch(function(error){
     console.log('error in GET', error);
   });
-};
+};//end getTasks function
 
 //POST
 //Submit your task and add input values to your form
@@ -48,12 +45,13 @@ function submitNewTask(taskToAdd){
    let task = {};
     task.taskName = $('#taskName').val();
     task.taskDescription =$('#taskDescription').val();
-    task.taskCompleted = $('#taskCompleted').val();
+    task.iscompleted = false;
    updateTasks(task);
     $('#taskName').val('');
     $('#taskDescription').val('');
-    $('#taskCompleted').val('');
-}
+}//end submitNewTask
+
+
    function updateTasks(taskToAdd){
    $.ajax({
     type: 'POST',
@@ -66,24 +64,24 @@ function submitNewTask(taskToAdd){
       console.log('Error in POST', error)
       alert('Unable to add book at this time. Please try again later.');
     });
-}
+}//end update tasks and corrected response typo and added getTasks function
 
 //render books to the page including any new ones 
 //once the submit button has been clicked
 function renderTasks(tasks) {
-    $('.tableBody').empty();
+    $('#tableBody').empty();
 for(let i = 0; i < tasks.length; i += 1) {
     // For each task, append a new row to our table
     $('#tableBody').append(`
-    <tr data-id="${tasks[i].id}">
-        <td>${tasks[i].task}</td>
-        <td>${tasks[i].description}</td>
-        <td>${tasks[i].completed}</td>
-        <td><button class="deleteBttn">X</button></td>
-    </tr>
-    `);
+        <tr data-id="${tasks[i].id}">
+            <td>${tasks[i].task}</td>
+            <td>${tasks[i].description}</td>
+            <td><button class="completeInput completed-${tasks[i].iscompleted}"></button></td>
+            <td><button class="deleteBttn">X</button></td>
+        </tr>
+      `);
   }
-};
+};//end renderTasks
 
 
 //I want to insert a box --but not a checkbox
@@ -92,23 +90,27 @@ for(let i = 0; i < tasks.length; i += 1) {
 // add a user input>
 // if true, set css to green ***FINISHED RIGHT HERE ...
 function checkOffTask(){
-    for(let i = 0; i < tasks.length; i += 1) {
-    // For each task, append a new row to our table
-    $('#tableBody').append(`
-    <tr data-id="${tasks[i].id}">
-        <td>${tasks[i].task}</td>
-        <td>${tasks[i].description}</td>
-        <td>${tasks[i].completed}</td>
-    </tr>
-    `);
-  }
-  
+  console.log($(this));
+  let taskIsCompleted = $(this).closest('tr').data('id');
+
+  //   for(let i = 0; i < tasks.length; i += 1) {
+  //   // For each task, append a new row to our table
+  //   // $('#tableBody').append(`
+  //   //     <tr data-id="${tasks[i].id}">
+  //   //         <td>${tasks[i].task}</td>
+  //   //         <td>${tasks[i].description}</td>
+  //   //         <td>${tasks[i].iscompleted}</td>
+  //   //     </tr>
+  //   //   `);
+  // }//end checkOffTask function
+  console.log('checkOffTask');
 $.ajax({
     method: 'PUT',
-    url: `/tasks/${task.id}`,
+    url: `/tasks/${taskIsCompleted}`,
 })
 .then( function(response) {
 console.log(response);  
+  getTasks();
 })
 .catch( function(error) {
     alert('Error on vote on song', error);
@@ -126,9 +128,9 @@ $.ajax({
     type: 'DELETE',
     url: `/tasks/${taskToDelete}`,
     data: 'taskToDelete'
-    }).then((reponse) => {
+    }).then((response) => {
       console.log('Response from server.', response);
-    //   getTasks();
+      getTasks();
     }).catch((error) => {
       console.log('Error in POST', error)
       alert('Unable to delete task at this time. Please try again later.');

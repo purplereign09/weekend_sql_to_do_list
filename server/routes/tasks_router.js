@@ -21,10 +21,10 @@ router.get('/', (req, res) => {
 router.post('/',  (req, res) => {
   let newTask = req.body;
   console.log(`Adding task`, newTask);
-  console.log([newTask.taskName, newTask.taskDescription, newTask.taskCompleted, newTask.taskDueDate]);
-  let queryText = `INSERT INTO "tasks" ("task", "description", "completed")
+  console.log([newTask.taskName, newTask.taskDescription, newTask.iscompleted]);
+  let queryText = `INSERT INTO "tasks" ("task", "description", "iscompleted")
                    VALUES ($1, $2, $3);`;
-  pool.query(queryText, [newTask.taskName, newTask.taskDescription, false])
+  pool.query(queryText, [newTask.taskName, newTask.taskDescription, newTask.iscompleted])
     .then(result => {
       res.sendStatus(201);
     })
@@ -36,11 +36,10 @@ router.post('/',  (req, res) => {
 
 //Update task list
 router.put('/:id',  (req, res) => {
-  let tasksID = req.params.id;
-  console.log(`Completed task`, tasksID);
   //adding parameterized query text to protect from anon
-  let queryText = `UPDATE tasks SET "completed" = true  WHERE "id" = $1;`;
-  pool.query(queryText, [req.params.id])
+  let queryText = `UPDATE tasks SET "iscompleted" = true  WHERE "id" = $1;`;
+  let sqlParams = [req.params.id]
+  pool.query(queryText, sqlParams )
     .then((dbRes) => {
       res.sendStatus(201);
     })

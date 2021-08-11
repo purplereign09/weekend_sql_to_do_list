@@ -423,6 +423,16 @@ tbody#tableBody tr td {
   font-size: 1.3rem;
 }
 
+button.completeInput {
+  background-color: orangered;
+  width: 50px;
+  height: 20px;
+}
+
+button.completed-true {
+  background-color: mediumspringgreen;
+}
+
 th#weekend_delete {
   margin-right: 40px;
 }
